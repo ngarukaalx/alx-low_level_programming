@@ -13,11 +13,11 @@ int main(void)
 	long long int o;
 	float p;
 
-	printf("The size of a char is: %lu.\n", (unsigned long)sizeof(y));
-	printf("the size of an int is: %lu.\n", (unsigned long)sizeof(u));
-	printf("The size of a long int:%lu.\n", (unsigned long)sizeof(i));
-	printf("The size of a long long int:%lu.\n", (unsigned long)sizeof(o));
-	printf("The size of a float:%lu.\n", (unsigned long)sizeof(p));
+	printf("Size of a char is: %lu byte(s)\n", (unsigned long)sizeof(y));
+	printf("Size of an int is: %lu byte(s)\n", (unsigned long)sizeof(u));
+	printf("Size of a long int:%lu byte(s)\n", (unsigned long)sizeof(i));
+	printf("Size of a long long int:%lu byte(s)\n", (unsigned long)sizeof(o));
+	printf("Size of a float:%lu byte(s)\n", (unsigned long)sizeof(p));
 
 	return (0);
 }
