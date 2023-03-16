@@ -1,9 +1,3 @@
-
-/*
- * File: 4-puts.c
- * HIRAM: kabuagi
- */
-
 #include <stdio.h>
 
 /**
