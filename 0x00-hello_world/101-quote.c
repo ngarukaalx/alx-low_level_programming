@@ -1,11 +1,10 @@
 #include <unistd.h>
 
 /**
- * main - entry point
+ * main - Prints "and that piece of art is useful" - Dora Korpar, 2015-10-19",
+ *                followed by a new line, to standard error.
  *
- * description: Prints a message to the standard error output.
- *
- * returns:Always returns 1 to indicate successful execution.
+ * Return: Always 1.
  */
 
 int main(void)
