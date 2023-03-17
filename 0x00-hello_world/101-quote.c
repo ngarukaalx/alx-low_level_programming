@@ -1,15 +1,17 @@
 #include <unistd.h>
 
 /**
- * main - prints "and that piece of art is useful" - Dora Korpar, 2015-10-19"
+ * main - entry point
+ *
+ * description: Prints a message to the standard error output.
  *
  * returns:Always 1.
  */
 
 int main(void)
 {
-	char message[] = "and that piece of art is useful\"i - Dora Korpar, 2015-10-19\n";
-	write(2, message, sizeof(message) - 1);
+const char message[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
+write(2, message, sizeof(message) - 1);
 
-	return (1);
+return (1);
 }
