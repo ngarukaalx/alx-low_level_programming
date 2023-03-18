@@ -3,10 +3,9 @@
 #include <time.h>
 
 /**
- * main - The variable n will store a different value every time you
- * will run this program
+ * main - Determine if a random number is positive, negative or zero.
  *
- * return:Always 0.
+ * return: 0 on success
  */
 
 int main(void)
