@@ -3,8 +3,8 @@
 #include <time.h>
 
 /**
- * main - prints This program will assign a random number
- *	to the variable n each time it is executed.
+ * main - generates a random integer and checks
+ *	if it's positive, negative, or zero.
  *
  * return:Always 0.
  */
