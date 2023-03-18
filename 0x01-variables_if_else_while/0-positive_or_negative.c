@@ -3,7 +3,7 @@
 #include <time.h>
 
 /**
- * main - prints"This program will assign a random number
+ * main - prints This program will assign a random number
  *	to the variable n each time it is executed.
  *
  * return:Always 0.
