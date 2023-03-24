@@ -2,16 +2,16 @@
 #include <stdio.h>
 
 /**
- * main - check the code
+ * _isupper - Checks if a character is lowercase.
+ * @c: The character to be checked.
  *
- * Return: Always 0.
+ * Return: 1 if character is lowercase, 0 otherwise.
  */
 int _isupper(int c)
 {
 
 	if (c >= 'A' && c <= 'Z')
-		putchar('1');
+		return (1);
 	else
-		putchar ('0');
-	return (0);
+		return (0);
 }
