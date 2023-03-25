@@ -1,12 +1,12 @@
 #include <stdio.h>
 
 /**
- * main - prints 1 to 100.
+ * main -prints 1 to 100.
  *
- * return:return 1 t0 100 on sucuses
+ * Return:return 0
  */
 
-int main()
+int main(void)
 {
 	int a;
 
