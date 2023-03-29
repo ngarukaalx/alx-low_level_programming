@@ -10,16 +10,7 @@
  */
 char *_strcat(char *dest, char *src)
 {
-	char *ptr = dest;
-
-	while (*ptr != '\0')
-		ptr++;
-
-	while (*src != '\0')
-	{
-		_putchar(*src);
-		*ptr++ = *src++;
-	}
-	*ptr = '\0';
+	strcat(dest, " ");
+	strcat(dest, src);
 	return (dest);
 }
