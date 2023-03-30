@@ -6,6 +6,7 @@
  * _strncat -  concatenates two strings.
  * @dest:being checked
  * @src:being checked
+ * @n:being checked
  *
  * Return:Always 0.
  */
