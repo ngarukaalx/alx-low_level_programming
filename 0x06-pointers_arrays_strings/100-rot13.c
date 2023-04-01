@@ -1,33 +1,32 @@
 #include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
+
 /**
  * rot13 -  function that encodes a string using rot13.
- * @str:being checked.
+ * @s:being checked.
  *
  * Return:result
  */
-char *rot13(char *str)
+char *rot13(char *s)
 {
-	char *result = (char *)malloc(sizeof(char) * strlen(str) + 1);
-
 	int i;
 
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		if (isalpha(str[i]))
-		{
-			char base = islower(str[i]) ? 'a' : 'A';
+	int j;
 
-			result[i] = (((str[i] - base)  +  13) % 26) +base;
-		}
-		else
+char data1[] =
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+char datarot[] =
+	"NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		for (j = 0; j < 52; j++)
 		{
-			result[i] = str[i];
+			if (s[i] == data1[j])
+			{
+				s[i] = datarot[j];
+				break;
+			}
 		}
 	}
-	result[i] = '\0';
-	return (result);
+	return (s);
 }
