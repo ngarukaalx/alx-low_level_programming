@@ -10,21 +10,31 @@
  */
 char *cap_string(char *str)
 {
-	int i;
-	int len;
+	int index = 0;
 
-	len = strlen(str);
-	str[0] = toupper(str[0]);
+	while (str[index])
+	{
+		while (!(str[index] >= 'a' && str[index] <= 'z'))
+			index++;
 
-	for (i = 1; i < len; i++)
-	{
-		if (isspace(str[i - 1]) || str[i - 1] == ',' || str[i - 1] == ';'
-		|| str[i - 1] == '.' || str[i - 1] == '!' || str[i - 1] == '?'
-		|| str[i - 1] == '"' || str[i - 1] == '(' || str[i - 1] == ')'
-		|| str[i - 1] == '{' || str[i - 1] == '}')
-	{
-		 str[i] = toupper(str[i]);
+		if (str[index - 1] == ' ' ||
+		    str[index - 1] == '\t' ||
+		    str[index - 1] == '\n' ||
+		    str[index - 1] == ',' ||
+		    str[index - 1] == ';' ||
+		    str[index - 1] == '.' ||
+		    str[index - 1] == '!' ||
+		    str[index - 1] == '?' ||
+		    str[index - 1] == '"' ||
+		    str[index - 1] == '(' ||
+		    str[index - 1] == ')' ||
+		    str[index - 1] == '{' ||
+		    str[index - 1] == '}' ||
+		    index == 0)
+			str[index] -= 32;
+
+		index++;
 	}
-	}
+
 	return (str);
 }
