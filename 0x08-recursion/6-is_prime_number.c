@@ -17,7 +17,7 @@ int is_prime_number(int n)
 	return (actual_prime(n, n - 1));
 }
 
-/** 
+/**
  * actual_prime - calculate if a number is prime recursively
  * @n:number to check
  * @k:iterator
