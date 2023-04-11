@@ -3,7 +3,7 @@
 #include <stdlib.h>
 /**
  * free_grid - frees a 2 dimensional grid previously created
- * @**grid:being freed
+ * @grid:being freed
  * @height:being freed
  *
  * Return:0 on succes
