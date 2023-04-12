@@ -31,6 +31,7 @@ char *argstostr(int ac, char **av)
 	if (result == NULL)
 	{
 		return (NULL);
+		exit(1);
 	}
 	result[0] = '\0';
 	for (j = 0; j < ac; j++)
@@ -39,5 +40,6 @@ char *argstostr(int ac, char **av)
 		strcat(result, "\n");
 	}
 	printf("%s", result);
+	free(result);
 	return (0);
 }
