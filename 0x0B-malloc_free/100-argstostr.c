@@ -39,7 +39,7 @@ char *argstostr(int ac, char **av)
 		strcat(result, av[j]);
 		strcat(result, "\n");
 	}
-	printf("%s\n", result);
+	printf("%s", result);
 	free(result);
 	return (0);
 }
