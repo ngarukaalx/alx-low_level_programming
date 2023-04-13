@@ -25,20 +25,17 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	len1 = strlen(s1);
 	len2 = strlen(s2);
 
-	results = malloc(len1 + len2 + 1);
+	if (n >= len2)
+		n = len2;
+
+	results = malloc(len1 + n + 1);
 	if (results == NULL)
 	{
 		return (NULL);
 	}
 	strcpy(results, s1);
-	if (n >= len2)
-	{
-		strcat(results, s2);
-	}
-	else
-	{
-		strncat(results, s2, n);
-	}
+
+	strncat(results, s2, n);
 	results[len1 + n] = '\0';
 	return (results);
 }
