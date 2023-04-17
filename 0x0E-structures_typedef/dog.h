@@ -19,26 +19,6 @@ struct dog
 	char *owner;
 	float age;
 };
+void init_dog(struct dog *d, char *name, float age, char *owner);
 
-/**
- * my_dog - short description
- * @name:first member
- * @owner:second member
- * @age:third member
- *
- * Return:My dog:wq
- */
-
-struct dog *my_dog(char *name, char *owner, float age)
-{
-	struct dog *dog;
-
-	dog = malloc(sizeof(struct dog));
-	if (dog == NULL)
-		return (NULL);
-	dog->name = name;
-	dog->owner = owner;
-	dog->age = age;
-	return (dog);
-}
 #endif
