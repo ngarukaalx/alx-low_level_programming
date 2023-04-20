@@ -5,7 +5,7 @@
  * array_iterator -  function that executes a function given as a parameter.
  * @array:to be iratarated.
  * @action:pointer to fuction
- * @size;size of array
+ * @size:size of array
  *
  * Return:array
  */
