@@ -36,7 +36,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	}
 	prev_node = *head;
 
-	for (k = 0; k < idx - 1 && *head != NULL; k++)
+	for (k = 0; k < idx && *head != NULL; k++)
 
 		head = &(*head)->next;
 	if (prev_node == NULL)
