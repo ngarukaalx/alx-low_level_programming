@@ -27,13 +27,10 @@ unsigned int binary_to_uint(const char *b)
 		{
 			return (0);
 		}
+		convert <<= 1;
 		if (b[k] == '1')
 		{
-			convert = convert * 2 + 1;
-		}
-		else if (b[k] != '0')
-		{
-			convert *= 2;
+			convert |= 1;
 		}
 	}
 	return (convert);
