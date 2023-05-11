@@ -4,18 +4,27 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+/**
+ * openElfFile - open an elf file
+ * @elf_filename:file to open
+ *
+ * Return:pointer to elf
+ */
+
 Elf64_Ehdr *openElfFile(char *elf_filename)
 {
 	int fd;
 
 	Elf64_Ehdr *elf;
 
-	if ((fd = open(elf_filename, O_RDONLY)) == -1)
+	fd = open(elf_filename, O_RDONLY);
+	if (fd == -1)
 	{
 		perror("Error open");
 		exit(98);
 	}
-	if ((elf = malloc(sizeof(Elf64_Ehdr))) == NULL)
+	elf = malloc(sizeof(Elf64_Ehdr));
+	if (elf == NULL)
 	{
 		perror("Error malloc");
 		exit(98);
@@ -29,7 +38,15 @@ Elf64_Ehdr *openElfFile(char *elf_filename)
 	close(fd);
 	return (elf);
 }
-Elf64_Ehdr* get_elf_header(Elf64_Ehdr *elf)
+
+/**
+ * get_elf_header - gets header
+ * @elf:pointer
+ *
+ * Return:elf
+ */
+
+Elf64_Ehdr *get_elf_header(Elf64_Ehdr *elf)
 {
 
 	if (elf->e_ident[EI_MAG0] != ELFMAG0 ||
@@ -42,6 +59,11 @@ Elf64_Ehdr* get_elf_header(Elf64_Ehdr *elf)
 	}
 	return (elf);
 }
+
+/**
+ * print_elf_header - prints elf header
+ * @ehdr:pointer
+ */
 void print_elf_header(Elf64_Ehdr *ehdr)
 {
 	int i;
@@ -54,15 +76,24 @@ void print_elf_header(Elf64_Ehdr *ehdr)
 	}
 	printf("\n");
 	printf("  Class:		%s\n", (ehdr->e_ident[EI_CLASS] == ELFCLASS64) ?
-		       	"ELF64" : "ELF32");
+			"ELF64" : "ELF32");
 	printf("  Data:			%s\n", (ehdr->e_ident[EI_DATA] == ELFDATA2LSB) ?
-		       	"little-endian" : "big-endian");
+			"little-endian" : "big-endian");
 	printf("  Version:		%d\n", ehdr->e_ident[EI_VERSION]);
 	printf("  OS/ABI:		%d\n", ehdr->e_ident[EI_OSABI]);
 	printf("  ABI Version:		%d\n", ehdr->e_ident[EI_ABIVERSION]);
 	printf("  Type:			%d\n", ehdr->e_type);
 	printf("  Entry point address:	0x%lx\n", ehdr->e_entry);
 }
+
+/**
+ * main - displays the information contained in the ELF header at
+ * the start of an ELF file.
+ * @argc:number of counts
+ * @argv:pointer to characters
+ *
+ * Return:0 on succes
+ */
 int main(int argc, char *argv[])
 {
 	Elf64_Ehdr *elf;
@@ -76,7 +107,7 @@ int main(int argc, char *argv[])
 	}
 	elf = openElfFile(argv[1]);
 	ehdr = get_elf_header(elf);
-	print_elf_header((Elf64_Ehdr*) ehdr);
+	print_elf_header((Elf64_Ehdr *) ehdr);
 
 	free(elf);
 	return (0);
