@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 	fd1 = open(argv[1], O_RDONLY);
 	readd = read(fd1, buffer, BUFFER_SIZE);
 	fd2 = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	do{
+	do {
 		if (fd1 == -1 || readd == -1)
 		{
 			dprintf(STDERR_FILENO,
@@ -54,9 +54,9 @@ int main(int argc, char *argv[])
 				"Error: Can't write to %s\n", argv[2]);
 			exit(99);
 		}
-		readd = read(fd1,buffer, BUFFER_SIZE);
+		readd = read(fd1, buffer, BUFFER_SIZE);
 		fd2 = open(argv[2], O_WRONLY | O_APPEND);
-	}while(readd > 0);
+	} while (readd > 0);
 	close_file(fd1);
 	close_file(fd2);
 
