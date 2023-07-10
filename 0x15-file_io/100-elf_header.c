@@ -65,13 +65,13 @@ void print_elf_header(Elf64_Ehdr *ehdr)
     printf("  OS/ABI:                         %d\n", ehdr->e_ident[EI_OSABI]);
     printf("  ABI Version:                    %d\n", ehdr->e_ident[EI_ABIVERSION]);
     printf("  Type:                           %d\n", ehdr->e_type);
-    printf("  Entry point address:            %#010lx\n", ehdr->e_entry);
+    printf("  Entry point address:            %#lx\n", (unsigned long)ehdr->e_entry);
 }
 
 int main(int argc, char *argv[])
 {
-    Elf64_Ehdr *elf;
-    Elf64_Ehdr *ehdr;
+    char *elf_filename;
+    Elf64_Ehdr *elf_header;
 
     if (argc != 2)
     {
@@ -79,11 +79,12 @@ int main(int argc, char *argv[])
         exit(98);
     }
 
-    elf = openElfFile(argv[1]);
-    ehdr = get_elf_header(elf);
-    print_elf_header(ehdr);
+    elf_filename = argv[1];
+    elf_header = openElfFile(elf_filename);
+    elf_header = get_elf_header(elf_header);
+    print_elf_header(elf_header);
 
-    free(elf);
+    free(elf_header);
     return 0;
 }
 
