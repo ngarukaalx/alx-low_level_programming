@@ -13,9 +13,9 @@ ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int file_descriptor;
 
-	char buffer[BUFFER_SIZE];
+	char *buffer;
 
-	ssize_t bytes_read;
+	ssize_t bytes_read, bytes_written;
 
 	if (filename == NULL)
 	{
@@ -28,14 +28,28 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		perror("cannot open file");
 		return (0);
 	}
+	buffer = (char *)malloc(sizeof(char) * letters);
+	if (buffer == NULL)
+	{
+		close(file_descriptor);
+		return (0);
+	}
 	bytes_read = read(file_descriptor, buffer, letters);
 	if (bytes_read == -1)
 	{
-		perror("Error reading file");
+		free(buffer);
+		close(file_descriptor);
 		return (0);
 	}
-	write(STDOUT_FILENO, buffer, bytes_read);
+	bytes_written = write(STDOUT_FILENO, buffer, bytes_read);
+	if (bytes_written == -1 || bytes_written != bytes_read)
+	{
+		free(buffer);
+		close(file_descriptor);
+		return (0);
+	}
+	free(buffer);
 	close(file_descriptor);
 
-	return (bytes_read);
+	return (bytes_written);
 }
