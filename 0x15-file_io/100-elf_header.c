@@ -80,7 +80,19 @@ void print_elf_header(Elf64_Ehdr *ehdr)
 	printf("  Data:			%s\n", (ehdr->e_ident[EI_DATA] == ELFDATA2LSB) ?
 			"2's complement, little-endian" : "2's complement, big-endian");
 	printf("  Version:		%u\n", ehdr->e_ident[EI_VERSION]);
-	printf("  OS/ABI:		%u\n", ehdr->e_ident[EI_OSABI]);
+	printf("  OS/ABI:		");
+	switch (ehdr->e_ident[EI_OSABI])
+	{
+		case ELFOSABI_SYSV:
+			printf("UNIX - System V\n");
+			break;
+		case ELFOSABI_NETBSD:
+			printf("UNIX - NetBSD\n");
+			break;
+		default:
+			printf("Unknown\n");
+			break;
+	}
 	printf("  ABI Version:		%u\n", ehdr->e_ident[EI_ABIVERSION]);
 	printf("  Type:			%u\n", ehdr->e_type);
 	printf("  Entry point address:	%#010lx\n", ehdr->e_entry);
