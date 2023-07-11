@@ -86,7 +86,7 @@ void version(unsigned char *e_ident)
 
 	switch (e_ident[EI_VERSION])
 	{
-	case EV_CURRENT:
+	case 2:
 		printf(" (current)\n");
 		break;
 	default:
