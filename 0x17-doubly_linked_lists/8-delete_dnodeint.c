@@ -32,8 +32,6 @@ void  delete_start(dlistint_t **head)
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
 
-	int reval = -1;
-
 	unsigned int count = 0;
 
 	dlistint_t *current = *head;
@@ -51,7 +49,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	}
 	if (current == NULL)
 	{
-		reval = -1;
+		return (-1);
 	}
 	else
 	{
@@ -64,7 +62,6 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 			current->next->prev = current->prev;
 		}
 		free(current);
-		reval = 1;
 	}
-	return (reval);
+	return (1);
 }
