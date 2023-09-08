@@ -9,15 +9,26 @@
 
 hash_node_t *create_item(const char *key, const char *value)
 {
+	char *dup_var = (value == NULL) ? NULL : strdup(value);
+
 	hash_node_t *item = (hash_node_t *)malloc(sizeof(hash_node_t));
+
+	if (dup_var == NULL && value != NULL)
+	{
+		return (0);
+	}
+	if (item == NULL)
+	{
+		return (0);
+	}
 
 	item->key = (char *)malloc(strlen(key) + 1);
 
-	item->value = (char *)malloc(strlen(value) + 1);
+	item->value = (char *)malloc(strlen(dup_var) + 1);
 
 	strcpy(item->key, key);
 
-	strcpy(item->value, value);
+	strcpy(item->value, dup_var);
 
 	return (item);
 }
@@ -41,6 +52,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	hash_node_t *current_item = ht->array[index];
 
+	if (dup_var == NULL)
+	{
+		return (0);
+	}
+
 	if (value == NULL || key == NULL)
 	{
 		return (0);
@@ -54,7 +70,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 	else
 	{
-
 		while (current_item != NULL)
 		{
 			if (strcmp(current_item->key, key) == 0)
@@ -69,5 +84,4 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		ht->array[index] = item;
 	}
 	return (1);
-
 }
