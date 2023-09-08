@@ -43,6 +43,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (value == NULL || key == NULL)
 	{
+		free(dup_var);
 		return (0);
 	}
 
@@ -50,6 +51,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	{
 		item->next = NULL;
 		ht->array[index] = item;
+		return (1);
 	}
 	else
 	{
@@ -60,6 +62,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			{
 				free(current_item->value);
 				current_item->value = dup_var;
+				free(dup_var);
 				return (1);
 			}
 			current_item = current_item->next;
@@ -67,7 +70,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		item->next = ht->array[index];
 		ht->array[index] = item;
 	}
-
+	free(dup_var);
 	return (1);
 
 }
