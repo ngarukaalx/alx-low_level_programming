@@ -9,15 +9,13 @@
 
 unsigned long int hash_djb2(const unsigned char *str)
 {
-	unsigned long i = 0;
-
-	unsigned long hash = 5000;
+	unsigned long hash = 5381;
 
 	int k;
 
 	for (k = 0; str[k]; k++)
 	{
-		i += str[k];
+		hash = (hash * 33) + str[k];
 	}
-	return i % hash;
+	return hash;
 }
