@@ -54,13 +54,11 @@ hash_node_t *create_item(const char *key, const char *value)
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *new_item;
+	hash_node_t *new_item, *current_item;
 
-	hash_node_t *current_item;
+	char *dup_var, *dup_key;
 
-	char *dup_var;
-
-	unsigned long int index;
+	unsigned long int index = 0;
 
 	if (ht == NULL || key == NULL || *key == '\0')
 		return (0);
@@ -82,7 +80,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		}
 		current_item = current_item->next;
 	}
-	new_item = create_item(key, dup_var);
+	dup_key = strdup(key);
+	if (!dup_key)
+		return (0);
+	new_item = create_item(dup_key, dup_var);
 	if (new_item == NULL)
 	{
 		free(dup_var);
