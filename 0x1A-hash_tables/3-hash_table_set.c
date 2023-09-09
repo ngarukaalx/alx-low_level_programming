@@ -9,28 +9,38 @@
 
 hash_node_t *create_item(const char *key, const char *value)
 {
-	char *dup_var = (value == NULL) ? NULL : strdup(value);
+	char *dup_key;
 
-	hash_node_t *item = (hash_node_t *)malloc(sizeof(hash_node_t));
+	char *dup_value;
 
-	if (dup_var == NULL && value != NULL)
+	hash_node_t *new_item;
+
+	if (key == NULL || value == NULL)
+		return (NULL);
+	dup_key = strdup(key);
+
+	dup_value = strdup(value);
+
+	if (dup_key == NULL || dup_value == NULL)
 	{
-		return (0);
+		free(dup_key);
+		free(dup_value);
+		return (NULL);
 	}
-	if (item == NULL)
+	new_item = malloc(sizeof(hash_node_t));
+
+	if (new_item == NULL)
 	{
-		return (0);
+		free(dup_key);
+		free(dup_value);
+		return (NULL);
 	}
 
-	item->key = (char *)malloc(strlen(key) + 1);
+	new_item->key = dup_key;
+	new_item->value = dup_value;
+	new_item->next = NULL;
 
-	item->value = (char *)malloc(strlen(dup_var) + 1);
-
-	strcpy(item->key, key);
-
-	strcpy(item->value, dup_var);
-
-	return (item);
+	return (new_item);
 }
 /**
  * hash_table_set - function that adds an element to the hash table.
@@ -44,44 +54,41 @@ hash_node_t *create_item(const char *key, const char *value)
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	char *dup_var = strdup(value);
+	hash_node_t *new_item;
 
-	hash_node_t *item = create_item(key, dup_var);
+	hash_node_t *current_item;
 
-	unsigned long int index = key_index((const unsigned char *)key, ht->size);
+	char *dup_var;
 
-	hash_node_t *current_item = ht->array[index];
+	unsigned long int index;
 
-	if (dup_var == NULL)
-	{
+	if (ht == NULL || key == NULL || *key == '\0')
 		return (0);
-	}
+	index = key_index((const unsigned char *)key, ht->size);
 
-	if (value == NULL || key == NULL)
-	{
+	current_item = ht->array[index];
+
+	dup_var = (value == NULL) ? NULL : strdup(value);
+	if (dup_var == NULL && value != NULL)
 		return (0);
-	}
-
-	if (current_item == NULL)
+	while (current_item != NULL)
 	{
-		item->next = NULL;
-		ht->array[index] = item;
-		return (1);
-	}
-	else
-	{
-		while (current_item != NULL)
+		if (strcmp(current_item->key, key) == 0)
 		{
-			if (strcmp(current_item->key, key) == 0)
-			{
-				free(current_item->value);
-				current_item->value = dup_var;
-				return (1);
-			}
-			current_item = current_item->next;
+			free(current_item->value);
+			current_item->value = dup_var;
+			free(dup_var);
+			return (1);
 		}
-		item->next = ht->array[index];
-		ht->array[index] = item;
+		current_item = current_item->next;
 	}
+	new_item = create_item(key, dup_var);
+	if (new_item == NULL)
+	{
+		free(dup_var);
+		return (0);
+	}
+	new_item->next =  ht->array[index];
+	ht->array[index] = new_item;
 	return (1);
 }

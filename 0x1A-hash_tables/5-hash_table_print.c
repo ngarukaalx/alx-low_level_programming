@@ -19,7 +19,7 @@ void hash_table_print(const hash_table_t *ht)
 		return;
 
 	printf("{");
-	for(i = 0; i < ht->size; i++)
+	for (i = 0; i < ht->size; i++)
 	{
 		traverse = ht->array[i];
 		while (traverse != NULL)
