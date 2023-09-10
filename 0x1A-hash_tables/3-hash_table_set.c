@@ -82,7 +82,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 	dup_key = strdup(key);
 	if (!dup_key)
+	{
 		return (0);
+	}
 	new_item = create_item(dup_key, dup_var);
 	if (new_item == NULL)
 	{
