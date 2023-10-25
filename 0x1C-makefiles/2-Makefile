@@ -4,6 +4,8 @@ NAME = school
 OBJ = $(SRC:.c=.o)
 all:$(NAME)
 $(NAME):$(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
-main.o: m.h
-school.o: m.h
+	$(CC) $^ -o $@
+
+
+%.o: %.c
+	&(CC) -c $< -o $@
