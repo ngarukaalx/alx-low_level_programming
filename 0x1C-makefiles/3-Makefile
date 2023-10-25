@@ -9,12 +9,10 @@ all:$(OBJ)
 
 clean:
 	$(RM) *~ school
+
 oclean:
 	$(RM) main.o school.o
-fclean:
-	$(RM) *~ school\
-	$(RM) main.o school.o
 
-re:
-	$(RM) main.o school.o
-	$(all)
+fclean: clean oclean
+
+re: fclean all
